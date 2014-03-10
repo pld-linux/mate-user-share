@@ -6,13 +6,14 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.6.1
+Version:	1.8.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	4a80a5e334ea60b1c236df2ffd6a59a1
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	3a2a12991a7109c304c79365d56a523f
 URL:		http://mate-desktop.org/
+%{?with_caja:BuildRequires:	caja-devel}
 BuildRequires:	dbus-devel >= 1.1.1
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
@@ -26,7 +27,6 @@ BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
 BuildRequires:	libunique-devel >= 1.0
 %{?with_bluetooth:BuildRequires:	mate-bluetooth-devel >= 1.2.0}
-%{?with_caja:BuildRequires:	mate-file-manager-devel}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 Requires(post,postun):	glib2 >= 1:2.26.0
@@ -54,18 +54,18 @@ mate-user-share to mały pakiet, łączący kilka wolnodostępnych
 projektów, aby zapewnić łatwy sposób współdzielenia plików na poziomie
 użytkownika dostępny dla każdego.
 
-%package -n mate-file-manager-extension-share
+%package -n caja-extension-user-share
 Summary:	Share extension for Caja (MATE file manager)
 Summary(pl.UTF-8):	Rozszerzenie współdzielenia plików dla zarządcy plików Caja
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	mate-file-manager
+Requires:	caja
 
-%description -n mate-file-manager-extension-share
+%description -n caja-extension-user-share
 Share (user-level file sharing) extension for Caja (MATE file
 manager).
 
-%description -n mate-file-manager-extension-share -l pl.UTF-8
+%description -n caja-extension-user-share -l pl.UTF-8
 Rozszerzenie share (pozwalające na współdzielenie plików na poziomie
 użytkownika) dla zarządcy plików Caja, przeznaczonego dla środowiska
 MATE.
@@ -95,7 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 # mate < 1.5 did not exist in PLD, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/mate-user-share.convert
 
-%find_lang %{name}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
+
+%find_lang %{name} --with-mate --with-omf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -123,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/mate-file-share-properties.1*
 
 %if %{with caja}
-%files -n mate-file-manager-extension-share
+%files -n caja-extension-user-share
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/caja/extensions-2.0/libcaja-share-extension.so
 %endif
