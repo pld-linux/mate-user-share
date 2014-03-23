@@ -1,13 +1,13 @@
 #
 # Conditional build:
-%bcond_without	bluetooth	# Bluetooth support
+%bcond_with	bluetooth	# Bluetooth support
 %bcond_without	caja		# Caja (mate-file-manager) extension
 #
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
 Version:	1.8.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
