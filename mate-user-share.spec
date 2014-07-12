@@ -29,6 +29,7 @@ BuildRequires:	libunique-devel >= 1.0
 %{?with_bluetooth:BuildRequires:	mate-bluetooth-devel >= 1.2.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
+BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	apache >= 2.2
@@ -95,9 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 # mate < 1.5 did not exist in PLD, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/mate-user-share.convert
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
-
-%find_lang %{name} --with-mate --with-omf
+%find_lang %{name} --with-mate
 
 %clean
 rm -rf $RPM_BUILD_ROOT
