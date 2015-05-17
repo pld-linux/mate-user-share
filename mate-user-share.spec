@@ -2,16 +2,17 @@
 # Conditional build:
 %bcond_with	bluetooth	# Bluetooth support
 %bcond_without	caja		# Caja (mate-file-manager) extension
+%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 #
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.8.1
+Version:	1.10.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	cd2aab75e7f20e5c1cf03ec856475d4e
+Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	968cfdca2cfdbe7fcd86ea461f9670b8
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel}
 BuildRequires:	dbus-devel >= 1.1.1
@@ -20,12 +21,15 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gnome-doc-utils
-BuildRequires:	gtk+2-devel >= 2:2.12.0
+%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
+%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 BuildRequires:	intltool >= 0.35.0
-BuildRequires:	libcanberra-gtk-devel
+%{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
+%{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
-BuildRequires:	libunique-devel >= 1.0
+%{!?with_gtk3:BuildRequires:	libunique-devel >= 1.0}
+%{?with_gtk3:BuildRequires:	libunique3-devel >= 3.0}
 %{?with_bluetooth:BuildRequires:	mate-bluetooth-devel >= 1.2.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -40,7 +44,8 @@ Requires:	apache-mod_authz_user >= 2.2
 Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.26.0
-Requires:	gtk+2 >= 2:2.12.0
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libnotify >= 0.7.0
 %{?with_bluetooth:Requires:	mate-bluetooth-libs >= 1.2.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,6 +84,7 @@ MATE.
 	%{!?with_bluetooth:--disable-bluetooth} \
 	--disable-schemas-compile \
 	--disable-silent-rules \
+	%{?with_gtk3:--with-gtk=3.0} \
 	--with-httpd=/usr/sbin/httpd \
 	--with-modules-path=/etc/httpd/modules
 
@@ -126,5 +132,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with caja}
 %files -n caja-extension-user-share
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/caja/extensions-2.0/libcaja-share-extension.so
+%attr(755,root,root) %{_libdir}/caja/extensions-2.0/libcaja-user-share.so
+%{_datadir}/caja/extensions/libcaja-user-share.caja-extension
 %endif
