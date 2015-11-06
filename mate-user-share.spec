@@ -7,12 +7,12 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.10.0
+Version:	1.12.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	968cfdca2cfdbe7fcd86ea461f9670b8
+Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
+# Source0-md5:	110c5079176c653c6793e3733be71f46
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel}
 BuildRequires:	dbus-devel >= 1.1.1
