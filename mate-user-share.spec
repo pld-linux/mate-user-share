@@ -15,7 +15,6 @@ Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
 # Source0-md5:	110c5079176c653c6793e3733be71f46
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel}
-BuildRequires:	dbus-devel >= 1.1.1
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
