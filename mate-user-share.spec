@@ -7,12 +7,12 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.14.0
+Version:	1.16.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
-# Source0-md5:	48bb5ae63167fde15a492391e0ca434b
+Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
+# Source0-md5:	1b48b824924db06ffff1ab0bcf00b181
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel}
 BuildRequires:	dbus-glib-devel
@@ -28,7 +28,6 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
 %{!?with_gtk3:BuildRequires:	libunique-devel >= 1.0}
-%{?with_gtk3:BuildRequires:	libunique3-devel >= 3.0}
 %{?with_bluetooth:BuildRequires:	mate-bluetooth-devel >= 1.2.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -98,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
 %endif
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/frp
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,pms}
 
 %find_lang %{name} --with-mate
 
