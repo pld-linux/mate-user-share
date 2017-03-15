@@ -2,31 +2,27 @@
 # Conditional build:
 %bcond_with	bluetooth	# Bluetooth support
 %bcond_without	caja		# Caja (mate-file-manager) extension
-%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 #
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.16.0
+Version:	1.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
-# Source0-md5:	1b48b824924db06ffff1ab0bcf00b181
+Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	89e33276be50b2039b577a230c1065e8
 URL:		http://mate-desktop.org/
-%{?with_caja:BuildRequires:	caja-devel}
+%{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
+BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	intltool >= 0.35.0
-%{!?with_gtk3:BuildRequires:	libcanberra-gtk-devel}
-%{?with_gtk3:BuildRequires:	libcanberra-gtk3-devel}
+BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
-%{!?with_gtk3:BuildRequires:	libunique-devel >= 1.0}
 %{?with_bluetooth:BuildRequires:	mate-bluetooth-devel >= 1.2.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
@@ -41,8 +37,7 @@ Requires:	apache-mod_authz_user >= 2.2
 Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.26.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	libnotify >= 0.7.0
 %{?with_bluetooth:Requires:	mate-bluetooth-libs >= 1.2.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -62,7 +57,7 @@ Summary:	Share extension for Caja (MATE file manager)
 Summary(pl.UTF-8):	Rozszerzenie współdzielenia plików dla zarządcy plików Caja
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	caja
+Requires:	caja >= 1.17.1
 
 %description -n caja-extension-user-share
 Share (user-level file sharing) extension for Caja (MATE file
@@ -81,7 +76,6 @@ MATE.
 	%{!?with_bluetooth:--disable-bluetooth} \
 	--disable-schemas-compile \
 	--disable-silent-rules \
-	%{?with_gtk3:--with-gtk=3.0} \
 	--with-httpd=/usr/sbin/httpd \
 	--with-modules-path=/etc/httpd/modules
 
@@ -96,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
 %endif
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,pms}
 
 %find_lang %{name} --with-mate
 
