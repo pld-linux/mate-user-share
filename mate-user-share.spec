@@ -17,7 +17,7 @@ URL:		http://mate-desktop.org/
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel
@@ -27,7 +27,7 @@ BuildRequires:	libselinux-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.36.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	apache >= 2.2
 Requires:	apache-mod_auth_digest >= 2.2
@@ -36,7 +36,7 @@ Requires:	apache-mod_authz_groupfile >= 2.2
 Requires:	apache-mod_authz_user >= 2.2
 Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.14
 Requires:	libnotify >= 0.7.0
 %{?with_bluetooth:Requires:	mate-bluetooth-libs >= 1.2.0}
