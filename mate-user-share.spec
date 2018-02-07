@@ -6,19 +6,19 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.18.0
+Version:	1.20.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	89e33276be50b2039b577a230c1065e8
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	7888f7e4170a3e798db855b86f9cfe0d
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.36.0
-BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
@@ -27,7 +27,7 @@ BuildRequires:	libselinux-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.36.0
+Requires(post,postun):	glib2 >= 1:2.50.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	apache >= 2.2
 Requires:	apache-mod_auth_digest >= 2.2
@@ -37,7 +37,7 @@ Requires:	apache-mod_authz_user >= 2.2
 Requires:	apache-mod_dav >= 2.2
 Requires:	apache-mod_dnssd >= 0.6
 Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	gtk+3 >= 3.22
 Requires:	libnotify >= 0.7.0
 %{?with_bluetooth:Requires:	mate-bluetooth-libs >= 1.2.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
