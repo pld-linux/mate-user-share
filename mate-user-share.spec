@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
 %endif
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,jv,kab,ku_IQ,nah,nqo,pms,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,jv,ku_IQ,nah,nqo,pms,ur_PK}
 
 %find_lang %{name} --with-mate
 
