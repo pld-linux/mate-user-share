@@ -6,12 +6,12 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.22.0
+Version:	1.22.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	dd21547d3cf248f9c3f3d79eb1bddb3b
+# Source0-md5:	446be831c2eeb4b2b64ed7f53e2c298b
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	dbus-glib-devel
@@ -90,7 +90,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/caja/extensions-2.0/*.la
 %endif
 
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,jv,ku_IQ,nah,nqo,pms,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{es_ES,frp,ie,jv,ku_IQ,nah,nqo,pms,ur_PK}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ie
 
 %find_lang %{name} --with-mate
 
