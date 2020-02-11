@@ -6,20 +6,19 @@
 Summary:	User-level file sharing for MATE desktop
 Summary(pl.UTF-8):	Współdzielenie plików na poziomie użytkownika dla środowiska MATE
 Name:		mate-user-share
-Version:	1.22.1
+Version:	1.24.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	446be831c2eeb4b2b64ed7f53e2c298b
+Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	acda295c6d115dae426bd921dd1474f0
 URL:		http://mate-desktop.org/
 %{?with_caja:BuildRequires:	caja-devel >= 1.17.1}
 BuildRequires:	dbus-glib-devel
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22
-BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libselinux-devel
